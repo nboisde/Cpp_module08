@@ -21,6 +21,7 @@ int main(void)
 	lst.push(10);
 	lst.push(11);
 	lst.push(42);
+	lst.push_back(12);
 	std::cout << lst.size() << std::endl;
 	MutantStack<int>::iterator it = lst.begin();
 	MutantStack<int>::iterator ite = lst.end();
