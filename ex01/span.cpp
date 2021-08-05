@@ -19,14 +19,17 @@ Span::Span(void){
 
 Span::Span(std::list<int>::iterator it1, std::list<int>::iterator it2){
 	int i = 0;
-	N = static_cast<unsigned int>(*it2 - *it1);// + 1);
-	std::cout << "N: " << N << std::endl;
+	//N = static_cast<unsigned int>(*it2 - *it1);// + 1);
+
 	while (it1 != it2)
 	{
-		_l.push_back(i);
+		_l.push_back(*it1);
 		i++;
 		it1++;
 	}
+	std::cout << "i: " << i << std::endl;
+	N = static_cast<unsigned int>(i);
+	std::cout << "N: " << N << std::endl;
 	//_l.push_back(i);
 	//for (std::list<int>::iterator it = _l.begin(); it != _l.end(); it++)
 	//	std::cout << *it << std::endl;
@@ -81,6 +84,15 @@ void Span::addNumber(int nbr)
 		std::cerr << e.what() << std::endl;
 	}
 }
+
+void Span::addRange(std::list<int>::iterator it1, std::list<int>::iterator it2){
+	while (it1 != it2)
+	{
+		this->addNumber(*it1);
+		it1++;
+	}
+}
+
 
 long int Span::longestSpan(void){
 	if (N == 0 || N == 1 || _l.size() == 0 || _l.size() == 1)

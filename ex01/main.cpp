@@ -57,7 +57,7 @@ int main(void)
 	std::list<int>::iterator beg = lst.begin();
 	std::list<int>::iterator end = lst.end();
 	Span l(beg, end);
-	std::cout << l.longestSpan() << std::endl;
+	std::cout << "rand longest span: "<< l.longestSpan() << std::endl;
 	/* WAYYYY TOOOOO LOOOOOONG
 	std::list<int>lst2;
 	for (unsigned int i = 0; i < 4294967295; i++)
@@ -82,5 +82,17 @@ int main(void)
 	std::cout << err.shortestSpan() << std::endl;
 	std::cout << err.longestSpan() << std::endl;
 
+	Span sp3(5);
+	std::list<int>lst2;
+	for (int i = 0; i < 5; i++)
+	{
+		int j = rand() % 10000;
+		lst2.push_back(j);
+	}
+	sp3.addRange(lst2.begin(), lst2.end());
+	std::cout << sp3 << std::endl;
+	std::cout << sp3.longestSpan() << std::endl;
+	std::cout << sp3.shortestSpan() << std::endl;
+	sp3.addRange(lst2.begin(), lst2.end());
 	return 0;
 }

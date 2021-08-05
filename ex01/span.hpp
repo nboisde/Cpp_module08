@@ -35,6 +35,7 @@ class Span{
 		long int longestSpan(void);
 		long int shortestSpan(void);
 		void addNumber(int nbr);
+		void addRange(std::list<int>::iterator it1, std::list<int>::iterator it2);
 
 		//exception
 		class SpanError : public std::exception
