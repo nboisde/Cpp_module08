@@ -6,7 +6,7 @@
 /*   By: nboisde <nboisde@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 13:38:57 by nboisde           #+#    #+#             */
-/*   Updated: 2021/08/04 15:09:54 by nboisde          ###   ########.fr       */
+/*   Updated: 2021/08/04 16:43:16 by nboisde          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,18 @@
 span::span() : N(0){}
 
 // changer pour un uint
-span::span(int n){
-	if (N < 0)
-	{
-		std::cout << "throw exception..." << std::endl;
-		N = 0;
-	}
-	else
-		N = n;
-}
+span::span(unsigned int n): N(n){}
 span::span(span const & src): N(src.getN()){}
 span::~span(){}
 
 // getters and setters
-int span::getN() const{return N;}
+unsigned int span::getN() const{return N;}
 
 // member functions
 void span::addNumber(int i){
 	if (this->size() == N)
 	{
-		std::cout << "Must throw an exception here." << std::endl;
+		throw span::SpanError();
 		return ;
 	}
 	else
@@ -50,10 +42,18 @@ span & span::operator=(span const & rhs){
 	return *this;
 }
 
+//exceptions
+span::SpanError::SpanError(void){}
+span::SpanError::~SpanError(void) throw(){}
+const char * span::SpanError::what() const throw(){
+	return "Span Error";
+}
+
+//functions
 long int longestSpan(span & s){
 	if (s.getN() == 0 || s.getN() == 1 || s.size() == 0 || s.size() == 1)
 	{
-		std::cout << "Must create an exception here" << std::endl;
+		//throw span::SpanError();
 		return 0;
 	}
 	s.sort();
@@ -70,7 +70,7 @@ long int longestSpan(span & s){
 long int shortestSpan(span & s){
 	if (s.getN() == 0 || s.getN() == 1 || s.size() == 0 || s.size() == 1)
 	{
-		std::cout << "Must create an exception here" << std::endl;
+		//throw span::SpanError();
 		return 0;
 	}
 	s.sort();
