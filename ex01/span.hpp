@@ -30,6 +30,7 @@ class Span{
 		//getters & setters
 		unsigned int getN(void) const;
 		std::list<int> getList(void) const;
+		bool getFull() const;
 
 		//member functions
 		long int longestSpan(void);
@@ -51,6 +52,7 @@ class Span{
 		Span(Span const & src);
 		std::list<int> _l;
 		unsigned int N;
+		bool _full;
 };
 
 std::ostream & operator<<(std::ostream & o, Span const & rhs);

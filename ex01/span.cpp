@@ -15,6 +15,7 @@
 //constructors and destructors
 Span::Span(void){
 	N = 0;
+	_full = false;
 }
 
 Span::Span(std::list<int>::iterator it1, std::list<int>::iterator it2){
@@ -29,6 +30,7 @@ Span::Span(std::list<int>::iterator it1, std::list<int>::iterator it2){
 	}
 	std::cout << "i: " << i << std::endl;
 	N = static_cast<unsigned int>(i);
+	_full = false;
 	std::cout << "N: " << N << std::endl;
 	//_l.push_back(i);
 	//for (std::list<int>::iterator it = _l.begin(); it != _l.end(); it++)
@@ -39,10 +41,7 @@ Span::Span(Span const & src){
 	*this = src;
 }
 
-Span::Span(unsigned int n): N(n){
-	// protect against stack explosion.
-	// or change _l on *_l
-}
+Span::Span(unsigned int n): N(n), _full(false){}
 
 Span::~Span(){}
 		
@@ -54,6 +53,7 @@ Span & Span::operator=(Span const & rhs){
 	{
 		this->N = rhs.getN();
 		this->_l = rhs.getList();
+		this->_full = rhs.getFull();
 		return *this;	
 	}
 }
@@ -61,6 +61,7 @@ Span & Span::operator=(Span const & rhs){
 //getters & setters
 unsigned int Span::getN(void) const{return N;}
 std::list<int> Span::getList(void) const{return _l;}
+bool Span::getFull(void) const{return _full;}
 
 //exceptions
 Span::SpanError::SpanError(void){}
@@ -75,7 +76,10 @@ void Span::addNumber(int nbr)
 	try
 	{
 		if (_l.size() == N)
+		{
+			_full = true;
 			throw Span::SpanError();
+		}
 		else
 			_l.push_back(nbr);
 	}
@@ -88,6 +92,8 @@ void Span::addNumber(int nbr)
 void Span::addRange(std::list<int>::iterator it1, std::list<int>::iterator it2){
 	while (it1 != it2)
 	{
+		if (_full == true)
+			break ;
 		this->addNumber(*it1);
 		it1++;
 	}
