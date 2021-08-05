@@ -69,21 +69,25 @@ const char * Span::SpanError::what() const throw(){
 //member functions
 void Span::addNumber(int nbr)
 {
-	if (_l.size() == N)
-		throw Span::SpanError();
-	else
-		_l.push_back(nbr);
+	try
+	{
+		if (_l.size() == N)
+			throw Span::SpanError();
+		else
+			_l.push_back(nbr);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 }
 
 long int Span::longestSpan(void){
-	std::list<int>cpy = _l;
-
-	cpy.sort();
 	if (N == 0 || N == 1 || _l.size() == 0 || _l.size() == 1)
-	{
 		throw Span::SpanError();
-		std::cout << "throw exc here." << std::endl;
-	}
+
+	std::list<int>cpy = _l;
+	cpy.sort();
 	int max;
 	int min;
 	std::list<int>::const_iterator beg = cpy.begin();
@@ -94,21 +98,28 @@ long int Span::longestSpan(void){
 	return res;
 }
 long int Span::shortestSpan(void){
-		std::list<int>cpy = _l;
-
-	cpy.sort();
 	if (N == 0 || N == 1 || _l.size() == 0 || _l.size() == 1)
-	{
 		throw Span::SpanError();
-		std::cout << "throw exc here." << std::endl;
-	}
+
+	std::list<int>cpy = _l;
+	cpy.sort();
 	int max;
 	int min;
-	std::list<int>::const_iterator beg = cpy.begin();
+		std::list<int>::const_iterator beg = cpy.begin();
 	min = *beg;
 	max = *(++beg);
-	long int res = static_cast<long int>(max - min);
-	return res;
+	long int span = static_cast<long int>(max - min);
+	//std::cout << span << std::endl;
+	std::list<int>::const_iterator end = (--(cpy.end()));
+	std::list<int>::iterator it = cpy.begin();
+	while (it != end)
+	{
+		int i = *it;
+		long int tmp = static_cast<long int>(*(++it) - i);
+		if (tmp < span)
+			span = tmp;
+	}
+	return span;
 }
 
 std::ostream & operator<<(std::ostream & o, Span const & rhs){

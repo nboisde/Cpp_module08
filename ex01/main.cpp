@@ -23,7 +23,7 @@ int main(void)
 	sp.addNumber(9);
 	sp.addNumber(11);
 	std::cout << sp << std::endl;
-	//sp.addNumber(23);
+	sp.addNumber(23);
 
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
@@ -69,16 +69,18 @@ int main(void)
 	Span l2(beg2, end2);
 	std::cout << l2.longestSpan() << std::endl;*/
 //	std::cout << l << std::endl;
-	try
-	{
-		l.addNumber(1000);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
+	l.addNumber(1000);
 	Span stack(-1);
 	std::cout << stack.getN() << std::endl;
+
+	Span err(5);
+	err.addNumber(1);
+	err.addNumber(142);
+	err.addNumber(100);
+	err.addNumber(121);
+	err.addNumber(122);
+	std::cout << err.shortestSpan() << std::endl;
+	std::cout << err.longestSpan() << std::endl;
 
 	return 0;
 }
