@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "span2.hpp"
+#include "span.hpp"
 
 //constructors and destructors
 Span::Span(void){
@@ -114,9 +114,10 @@ long int Span::shortestSpan(void){
 std::ostream & operator<<(std::ostream & o, Span const & rhs){
 	o << "N: " << rhs.getN() << std::endl;
 	o << "elements: " << std::endl << "[";
-	for (std::list<int>::iterator it1 = rhs.getList().begin(); it1 != (rhs.getList().end()); it1++)
+	// fix error here.
+	std::list<int> cpy = rhs.getList();
+	for (std::list<int>::iterator it1 = cpy.begin(); it1 != cpy.end(); ++it1)
 		o << *it1 << ",";
 	o << "]" << std::endl;
 	return o;
 }
-

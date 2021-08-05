@@ -10,17 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "span2.hpp"
+#include "span.hpp"
 
 int main(void)
 {
 	Span sp(5);
 
+	std::cout << sp << std::endl;
 	sp.addNumber(5);
 	sp.addNumber(3);
 	sp.addNumber(17);
 	sp.addNumber(9);
 	sp.addNumber(11);
+	std::cout << sp << std::endl;
 	//sp.addNumber(23);
 
 	std::cout << sp.shortestSpan() << std::endl;
@@ -56,8 +58,8 @@ int main(void)
 	std::list<int>::iterator end = lst.end();
 	Span l(beg, end);
 	std::cout << l.longestSpan() << std::endl;
-	std::list<int>lst2;
 	/* WAYYYY TOOOOO LOOOOOONG
+	std::list<int>lst2;
 	for (unsigned int i = 0; i < 4294967295; i++)
 	{
 		lst2.push_back(i);
@@ -65,7 +67,8 @@ int main(void)
 	std::list<int>::iterator beg2 = lst2.begin();
 	std::list<int>::iterator end2 = lst2.end();
 	Span l2(beg2, end2);
-	std::cout << l2.longestSpan() << std::endl;
+	std::cout << l2.longestSpan() << std::endl;*/
+//	std::cout << l << std::endl;
 	try
 	{
 		l.addNumber(1000);
@@ -73,7 +76,7 @@ int main(void)
 	catch(const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
-	}*/
+	}
 	Span stack(-1);
 	std::cout << stack.getN() << std::endl;
 
