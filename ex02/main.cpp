@@ -17,14 +17,26 @@
 
 int main(void)
 {
-	MutantStack<int> lst;
-	lst.push(10);
-	lst.push(11);
-	lst.push(42);
+	MutantStack<int> mstack;
+	mstack.push(10);
+	mstack.push(11);
+	mstack.push(42);
 
-	std::cout << "size: " << lst.size() << std::endl;
-	MutantStack<int>::iterator it = lst.begin();
-	MutantStack<int>::iterator ite = lst.end();
+	std::cout << "size: " << mstack.size() << std::endl;
+
+
+	std::cout << mstack.top() << std::endl;
+
+	mstack.pop();
+
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	mstack.push(0);
+	mstack.push(42);
+
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
 	std::cout << "iterate through stack:" << std::endl;
@@ -35,12 +47,12 @@ int main(void)
 	}
 
 	// Here shows the legacy of MutantStack from std::stack.
-	std::stack<int> s(lst);
+	std::stack<int> s(mstack);
 
 	std::cout << std::endl << "-------------------------------------------" << std::endl;
-	MutantStack<int> lst2(lst);
-	MutantStack<int>::iterator it2 = lst.begin();
-	MutantStack<int>::iterator ite2 = lst.end();
+	MutantStack<int> mstack2(mstack);
+	MutantStack<int>::iterator it2 = mstack.begin();
+	MutantStack<int>::iterator ite2 = mstack.end();
 	while (it2 != ite2)
 	{
 		std::cout << *it2 << std::endl;
