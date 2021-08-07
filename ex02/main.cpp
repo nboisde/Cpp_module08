@@ -21,16 +21,29 @@ int main(void)
 	lst.push(10);
 	lst.push(11);
 	lst.push(42);
-	lst.push_back(12);
-	std::cout << lst.size() << std::endl;
+
+	std::cout << "size: " << lst.size() << std::endl;
 	MutantStack<int>::iterator it = lst.begin();
 	MutantStack<int>::iterator ite = lst.end();
 	++it;
 	--it;
+	std::cout << "iterate through stack:" << std::endl;
 	while (it != ite)
 	{
 		std::cout << *it << std::endl;
 		++it;
 	}
+
+	// Here shows the legacy of MutantStack from std::stack.
 	std::stack<int> s(lst);
+
+	std::cout << std::endl << "-------------------------------------------" << std::endl;
+	MutantStack<int> lst2(lst);
+	MutantStack<int>::iterator it2 = lst.begin();
+	MutantStack<int>::iterator ite2 = lst.end();
+	while (it2 != ite2)
+	{
+		std::cout << *it2 << std::endl;
+		++it2;
+	}
 }

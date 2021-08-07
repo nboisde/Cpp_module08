@@ -10,6 +10,4 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mutantstack.hpp"
-
-
+//No need of code here ! Everything is templated.
