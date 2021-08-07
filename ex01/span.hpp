@@ -16,6 +16,7 @@
 #include <list>
 #include <iostream>
 #include <stdexcept>
+#include <stdlib.h>
 
 class Span{
 	public:
